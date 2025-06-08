@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - "namadataset_raw/**"
-      - "preprocessing/automate_Nama-siswa.py"
+      - "preprocessing/automate_JoanneLT.py"
   workflow_dispatch:
 
 jobs:
@@ -28,18 +28,18 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Sesuaikan jika script Anda butuh library lain, misal scikit-learn
           pip install pandas scikit-learn
 
       - name: Run preprocessing script
-        run: python automate_Nama-siswa.py
+        run: python automate_JoanneLT.py
 
       - name: Commit and push preprocessed data
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          # Pastikan path ke file csv Anda sudah benar
-          git add namadataset_preprocessing/mushrooms_preprocessed.csv
-          # Commit hanya jika ada perubahan
+          git add mushrooms_preprocessing/mushrooms_preprocessed.csv
           git diff --staged --quiet || git commit -m "Automated preprocessing: update preprocessed dataset"
           git push
+git add .
+git commit -m "Feat: Add CI workflow for preprocessing"
+git push
