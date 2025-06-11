@@ -1,12 +1,12 @@
 import pandas as pd
 import os
 
-def preprocess_data(raw_data_path, processed_data_path):
+def preprocess_data(raw_path, processed_path):
     """
     Fungsi ini memuat data mentah, melakukan preprocessing, dan menyimpannya.
     """
-    print(f"Memuat data dari: {raw_data_path}")
-    df = pd.read_csv(raw_data_path)
+    print(f"Memuat data dari: {raw_path}")
+    df = pd.read_csv(raw_path)
 
     print("Memulai preprocessing...")
 
@@ -31,14 +31,14 @@ def preprocess_data(raw_data_path, processed_data_path):
     print(f"Preprocessing selesai. Dimensi data baru: {df.shape}")
 
     # Membuat direktori output jika belum ada
-    os.makedirs(os.path.dirname(processed_data_path), exist_ok=True)
+    os.makedirs(os.path.dirname(processed_path), exist_ok=True)
 
     # Menyimpan data yang sudah diproses
-    df.to_csv(processed_data_path, index=False)
-    print(f"Data yang sudah diproses disimpan di: {processed_data_path}")
+    df.to_csv(processed_path, index=False)
+    print(f"Data yang sudah diproses disimpan di: {processed_path}")
 
 if __name__ == '__main__':
     # Menentukan path input dan output relatif terhadap lokasi script
-    raw_path = '../namadataset_raw/mushrooms.csv'
-    processed_path = 'namadataset_preprocessing/mushrooms_preprocessed.csv'
+    raw_path = '../dataset_raw/mushrooms.csv'
+    processed_path = 'mushrooms_preprocessing/mushrooms_preprocessed.csv'
     preprocess_data(raw_path, processed_path)
